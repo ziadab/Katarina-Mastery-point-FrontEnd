@@ -1,19 +1,24 @@
 <template>
   <div class="container">
     <div class="dataSection">
-      <div class="text_stuff">
-        <p class="text1">Your Mastery Point</p>
-        <p class="text2">Are</p>
-        <p class="mastery">{{ mastery }}</p>
+      <fade-transition :duration="900" :delay="700">
+        <div class="text_stuff" v-show="mastery > 0">
+          <p class="text1">Your Mastery Point</p>
+          <p class="text2">Are</p>
+          <p class="mastery">{{ mastery }}</p>
+        </div>
+      </fade-transition>
+    </div>
+    <fade-transition :duration="900" :delay="100">
+      <div class="imageSection" v-show="mastery > 0">
+        <img class="kata" src="https://d.top4top.io/p_1718jgvml1.png" />
       </div>
-    </div>
-    <div class="imageSection">
-      <img class="kata" src="https://d.top4top.io/p_1718jgvml1.png" />
-    </div>
+    </fade-transition>
   </div>
 </template>
 
 <script>
+import { FadeTransition } from "vue2-transitions";
 import axios from "axios";
 
 export default {
@@ -27,6 +32,9 @@ export default {
       "https://katarina-mastery-counter.herokuapp.com/"
     );
     this.mastery = request.data.mastery;
+  },
+  components: {
+    FadeTransition
   }
 };
 </script>
