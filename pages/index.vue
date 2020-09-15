@@ -4,7 +4,7 @@
       <div class="text_stuff">
         <p class="text1">Your Mastery Point</p>
         <p class="text2">Are</p>
-        <p class="mastery">{{mastery}}</p>
+        <p class="mastery">{{ mastery }}</p>
       </div>
     </div>
     <div class="imageSection">
@@ -19,15 +19,15 @@ import axios from "axios";
 export default {
   data() {
     return {
-      mastery: 0,
+      mastery: 0
     };
   },
-  async created() {
+  async mounted() {
     const request = await axios.get(
       "https://katarina-mastery-counter.herokuapp.com/"
     );
     this.mastery = request.data.mastery;
-  },
+  }
 };
 </script>
 
